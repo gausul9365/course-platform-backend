@@ -23,3 +23,9 @@ public interface SearchRepository extends Repository<CourseEntity, String> {
         """, nativeQuery = true)
     List<String> searchCourseIds(@Param("q") String query);
 }
+
+
+// issues occured here :
+//What changed?
+//Object -> CourseEntity
+//Long - > String (because CourseEntity ID is String)
