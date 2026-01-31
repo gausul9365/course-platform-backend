@@ -6,6 +6,8 @@ import io.jsonwebtoken.security.Keys;
 
 import java.security.Key;
 import java.util.Date;
+import java.security.Key;
+
 
 public class JwtUtil {
 
@@ -30,4 +32,9 @@ public class JwtUtil {
     public static long getExpirationTime() {
         return EXPIRATION_TIME / 1000; // seconds
     }
+
+    public static Key getKey() {
+        return key;
+    }
+
 }
