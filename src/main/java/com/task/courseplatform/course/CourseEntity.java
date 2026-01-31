@@ -2,6 +2,9 @@ package com.task.courseplatform.course;
 
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
 
 @Entity
 @Table(name = "courses")
@@ -14,6 +17,8 @@ public class CourseEntity {
 
     private String description;
 
+
+    @JsonManagedReference
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<TopicEntity> topics;
 

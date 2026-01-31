@@ -1,6 +1,9 @@
 package com.task.courseplatform.course;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
 
 @Entity
 @Table(name = "subtopics")
@@ -46,6 +49,8 @@ public class SubtopicEntity {
         this.topic = topic;
     }
 
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "topic_id")
     private TopicEntity topic;

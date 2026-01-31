@@ -2,6 +2,10 @@ package com.task.courseplatform.course;
 
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
 
 @Entity
 @Table(name = "topics")
@@ -44,10 +48,14 @@ public class TopicEntity {
         this.title = title;
     }
 
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "course_id")
     private CourseEntity course;
 
+
+    @JsonManagedReference
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<SubtopicEntity> subtopics;
 
