@@ -4,6 +4,11 @@ import com.task.courseplatform.auth.dto.RegisterRequest;
 import com.task.courseplatform.auth.dto.RegisterResponse;
 import org.springframework.web.bind.annotation.*;
 
+import com.task.courseplatform.auth.dto.LoginRequest;
+import com.task.courseplatform.auth.dto.LoginResponse;
+import com.task.courseplatform.auth.jwt.JwtUtil;
+
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -28,4 +33,21 @@ public class AuthController {
                 "User registered successfully"
         );
     }
+
+// Login Endpoint
+    @PostMapping("/login")
+    public LoginResponse login(@RequestBody LoginRequest request) {
+
+        String token = authService.login(
+                request.getEmail(),
+                request.getPassword()
+        );
+
+        return new LoginResponse(
+                token,
+                request.getEmail(),
+                JwtUtil.getExpirationTime()
+        );
+    }
+
 }
