@@ -8,7 +8,7 @@ import java.util.List;
 public class CourseEntity {
 
     @Id
-    private String id; // like "physics-101"
+    private String id;
 
     private String title;
 
@@ -18,4 +18,36 @@ public class CourseEntity {
     private List<TopicEntity> topics;
 
     // getters and setters
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<TopicEntity> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<TopicEntity> topics) {
+        this.topics = topics;
+    }
 }
