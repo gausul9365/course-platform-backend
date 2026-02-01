@@ -15,7 +15,7 @@ public class SearchController {
         this.searchService = searchService;
     }
 
-    // GET /api/search?q=velocity
+
     @GetMapping
     public List<CourseEntity> search(@RequestParam String q) {
         return searchService.searchCourses(q);

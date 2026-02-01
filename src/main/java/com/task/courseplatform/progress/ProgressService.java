@@ -5,6 +5,7 @@ import com.task.courseplatform.auth.UserRepository;
 import com.task.courseplatform.course.SubtopicEntity;
 import com.task.courseplatform.course.SubtopicRepository;
 import com.task.courseplatform.enrollment.EnrollmentRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -18,8 +19,8 @@ import com.task.courseplatform.progress.dto.ProgressResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -46,7 +47,7 @@ public class ProgressService {
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         SubtopicEntity subtopic = subtopicRepository.findById(subtopicId)
-                .orElseThrow(() -> new IllegalArgumentException("Subtopic not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Subtopic not found"));
 
         String courseId = subtopic.getTopic().getCourse().getId();
 
@@ -68,14 +69,14 @@ public class ProgressService {
                 });
     }
 
-
+    @Transactional(readOnly = true)
     public ProgressResponse getProgress(Long enrollmentId, String userEmail) {
 
         EnrollmentEntity enrollment = enrollmentRepository.findById(enrollmentId)
                 .orElseThrow(() -> new IllegalArgumentException("Enrollment not found"));
 
         if (!enrollment.getUser().getEmail().equals(userEmail)) {
-            throw new IllegalStateException("Forbidden");
+            throw new AccessDeniedException("Forbidden");
         }
 
         int totalSubtopics = enrollment.getCourse()

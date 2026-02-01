@@ -4,6 +4,7 @@ import com.task.courseplatform.course.CourseEntity;
 import com.task.courseplatform.course.CourseRepository;
 import com.task.courseplatform.auth.UserEntity;
 import com.task.courseplatform.auth.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -29,7 +30,8 @@ public class EnrollmentService {
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         CourseEntity course = courseRepository.findById(courseId)
-                .orElseThrow(() -> new IllegalArgumentException("Course not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Enrollment not found"));
+
 
         if (enrollmentRepository.existsByUserAndCourse(user, course)) {
             throw new IllegalStateException("Already enrolled");

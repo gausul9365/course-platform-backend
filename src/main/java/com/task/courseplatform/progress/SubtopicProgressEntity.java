@@ -69,5 +69,5 @@ public class SubtopicProgressEntity {
 
     private Instant completedAt;
 
-    // getters and setters
+
 }

@@ -59,5 +59,5 @@ public class TopicEntity {
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<SubtopicEntity> subtopics;
 
-    // getters and setters
+
 }

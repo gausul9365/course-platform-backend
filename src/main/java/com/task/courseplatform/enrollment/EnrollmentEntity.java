@@ -59,5 +59,5 @@ public class EnrollmentEntity {
 
     private Instant enrolledAt;
 
-    // getters and setters
+
 }

@@ -1,5 +1,6 @@
 package com.task.courseplatform.course;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -20,6 +21,7 @@ public class CourseEntity {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<TopicEntity> topics;
 
     // getters and setters

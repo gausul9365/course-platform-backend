@@ -18,6 +18,13 @@ public class EnrollmentController {
     public EnrollmentResponse enroll(@PathVariable String courseId,
                                      Authentication authentication) {
 
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new org.springframework.security.authentication
+                    .AuthenticationCredentialsNotFoundException(
+                    "JWT token is missing or invalid"
+            );
+        }
+
         String userEmail = authentication.getName();
 
         EnrollmentEntity enrollment =
@@ -30,4 +37,7 @@ public class EnrollmentController {
                 enrollment.getEnrolledAt()
         );
     }
+
+
+
 }

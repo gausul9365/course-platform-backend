@@ -11,7 +11,7 @@ import java.security.Key;
 
 public class JwtUtil {
 
-    // simple hardcoded key (OK for assignment)
+
     private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     private static final long EXPIRATION_TIME = 24 * 60 * 60 * 1000; // 24 hours

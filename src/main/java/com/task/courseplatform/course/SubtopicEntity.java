@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class SubtopicEntity {
 
     @Id
-    private String id; // like "velocity"
+    private String id;
 
     private String title;
 

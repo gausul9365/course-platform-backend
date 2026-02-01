@@ -1,5 +1,6 @@
 package com.task.courseplatform.course;
 
+import com.task.courseplatform.course.dto.CourseResponseDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,15 +15,16 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    // GET /api/courses
+
     @GetMapping
     public List<CourseEntity> getAllCourses() {
         return courseService.getAllCourses();
     }
 
-    // GET /api/courses/{id}
+
     @GetMapping("/{id}")
-    public CourseEntity getCourseById(@PathVariable String id) {
+    public CourseResponseDto getCourseById(@PathVariable String id) {
         return courseService.getCourseById(id);
     }
+
 }

@@ -39,5 +39,5 @@ public class UserEntity {
 
     private String password;
 
-    // getters and setters
+
 }
